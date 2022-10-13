@@ -1,18 +1,13 @@
 package ru.netology.test;
 
-import com.codeborne.selenide.Condition;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import org.openqa.selenium.Keys;
-
-
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
+import com.codeborne.selenide.Condition;
 
 public class CardOrderTest {
 	
@@ -65,16 +60,11 @@ public class CardOrderTest {
 	
 	   @Test
     void shouldIMobilePhoneField() {
-
-        $x("//*[@placeholder = \"Город\"]").setValue("Томск");
-        String planningDate = generateDate(4);
-        $x("//*[@data-test-id = \"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE + planningDate);
         $x("//*[@name = \"name\"]").setValue("Иванов Андрей");
         $x("//*[@name = \"phone\"]").setValue("9214567845");
         $x("//*[@data-test-id = \"agreement\"]").click();
         $x("//*[@class =\"button__text\" ]").click();
-        $x("//* [contains(text(),\"Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.\")]").should(visible, Duration.ofSeconds(12));
-
+        $x("[data-test-id=phone].input_invalid .input__sub").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
 
     }
 }
