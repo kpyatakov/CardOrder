@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class CardOrderTest {
 	
@@ -60,11 +61,11 @@ public class CardOrderTest {
 	
 	   @Test
     void shouldIMobilePhoneField() {
-        $x("//*[@name = \"name\"]").setValue("Иванов Андрей");
-        $x("//*[@name = \"phone\"]").setValue("9214567845");
-        $x("//*[@data-test-id = \"agreement\"]").click();
-        $x("//*[@class =\"button__text\" ]").click();
-        $x("[data-test-id=phone].input_invalid .input__sub").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
+        $("[data-test-id=name] input").setValue("Dmitri Romanov");
+        $("[data-test-id=phone] input").setValue("9101234567");
+        $("[data-test-id=agreement]").click();
+        $("button[type=button]").click();
+        $("[data-test-id='phone'].input_invalid .input__sub").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
 
     }
 }
