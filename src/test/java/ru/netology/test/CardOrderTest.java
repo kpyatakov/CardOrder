@@ -61,7 +61,7 @@ public class CardOrderTest {
 	
 	   @Test
     void shouldIMobilePhoneField() {
-        $("[data-test-id=name] input").setValue("Dmitri Romanov");
+        $("[data-test-id=name] input").setValue("Иванов Андрей");
         $("[data-test-id=phone] input").setValue("9101234567");
         $("[data-test-id=agreement]").click();
         $("button[type=button]").click();
